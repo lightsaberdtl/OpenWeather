@@ -19,11 +19,11 @@
     "pretest:chrome": "npm run clean:reports",
     "scripts:chrome": "cypress run --browser chrome",
     "posttest:chrome": "npm run combine-reports && npm run generate-report",
-    "test:chrome" : "npm run scripts:chrome || npm run posttest:chrome",
+    "test:chrome": "npm run scripts:chrome || npm run posttest:chrome",
     "pretest:firefox": "npm run clean:reports",
     "scripts:firefox": "cypress run --browser firefox",
     "posttest:firefox": "npm run combine-reports && npm run generate-report",
-    "test:firefox" : "npm run scripts:firefox || npm run posttest:firefox"
+    "test:firefox": "npm run scripts:firefox || npm run posttest:firefox"
   },
   "author": "",
   "license": "ISC"
