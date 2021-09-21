@@ -1,0 +1,150 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 3,
+    "passes": 2,
+    "pending": 0,
+    "failures": 1,
+    "start": "2021-09-19T16:22:17.048Z",
+    "end": "2021-09-19T16:22:34.239Z",
+    "duration": 17191,
+    "testsRegistered": 3,
+    "passPercent": 66.66666666666666,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "e79efe30-24af-4be1-b197-605f34171e1e",
+      "title": "",
+      "fullFile": "cypress/integration/E2E/Desktop/02-list-city-page.js",
+      "file": "cypress/integration/E2E/Desktop/02-list-city-page.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "b54e4017-60c6-4bdd-b8c2-69f0a01431d5",
+          "title": "List city page - display result",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Main case - Found one city",
+              "fullTitle": "List city page - display result Main case - Found one city",
+              "timedOut": null,
+              "duration": 8512,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Intercept to check if search city API was called\nconst cityQueryEncode = cityTestData.main.cityQuery.replace(' ', '%20');\ncy.intercept({\n  method: 'GET',\n  url: `${Cypress.env('getCityListAPI_UI')}*&q=${cityQueryEncode}*`\n}).as('getCityList'); // assign an alias \n// Go directly to searching page with query\ncy.visit(`${Cypress.env('homePageURL')}find?q=${cityTestData.main.cityQuery.replace(' ', '+')}`); // Check search input and search log exist on search page\ncityListPage.getCitySearchInput().should('exist');\ncityListPage.getSearchButton().should('exist'); // Search city API was called\ncy.wait('@getCityList', {\n  timeout: 10000\n}).then(interception => {\n  console.log(interception);\n  assert.isNotNull(interception.response.body, 'API was called');\n}); // Check number of city returned\ncityListPage.getCities().should('have.length', cityTestData.main.expectedResultLength); // Check weather img, city name, temperatrue exits and click on the link\ncityListPage.getWeatherImage(0).should('exist');\ncityListPage.getTemperature(0).should('exist');\ncityListPage.getCityName(0).should('have.text', ` ${cityTestData.main.cityQuery}, ${cityTestData.main.countryISO}`).click();\n/* AFTER NAVIGATING */\n// Check navigate to right page\ncy.url().should('include', `city/${cityTestData.main.cityId}`);",
+              "err": {},
+              "uuid": "2a0c9506-ff3c-4cdc-a316-687fabe83ed1",
+              "parentUUID": "b54e4017-60c6-4bdd-b8c2-69f0a01431d5",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Found multiple cities",
+              "fullTitle": "List city page - display result Found multiple cities",
+              "timedOut": null,
+              "duration": 567,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "/* The main test case had checked it all, this case we only check number of city returend */\n// Go directly to searching page with query\ncy.visit(`${Cypress.env('homePageURL')}find?q=${cityTestData.multipleResult.cityQuery.replace(' ', '+')}`); // Check number of city returned\ncityListPage.getCities().should('have.length', cityTestData.multipleResult.expectedResultLength);",
+              "err": {
+                "message": "Error: The following error originated from your application code, not from Cypress. It was caused by an unhandled promise rejection.\n\n  > NetworkError when attempting to fetch resource.\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nhttps://on.cypress.io/uncaught-exception-from-application",
+                "estack": "Error: The following error originated from your application code, not from Cypress. It was caused by an unhandled promise rejection.\n\n  > NetworkError when attempting to fetch resource.\n\nWhen Cypress detects uncaught errors originating from your application it will automatically fail the current test.\n\nThis behavior is configurable, and you can choose to turn this off by listening to the `uncaught:exception` event.\n\nhttps://on.cypress.io/uncaught-exception-from-application\nfetchOneCallAPI/<@https://openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-new.4cf40276266129f0d7c2a1ece288ef.js:118:121772\n",
+                "diff": null
+              },
+              "uuid": "8e812af5-8cbf-44a9-895f-27a9abd2562a",
+              "parentUUID": "b54e4017-60c6-4bdd-b8c2-69f0a01431d5",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Found no city",
+              "fullTitle": "List city page - display result Found no city",
+              "timedOut": null,
+              "duration": 3604,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "/* The main test case had checked it all, this case we only check number of city returend */\n// Go directly to searching page with query\ncy.visit(`${Cypress.env('homePageURL')}find?q=${cityTestData.emptyResult.cityQuery.replace(' ', '+')}`); // Check number of city returned\ncityListPage.getCities().should('have.length', cityTestData.emptyResult.expectedResultLength);\ncityListPage.getNotFound().should('exist');",
+              "err": {},
+              "uuid": "236a56f5-7b5f-4cd1-b6b4-5ac5b2db80fc",
+              "parentUUID": "b54e4017-60c6-4bdd-b8c2-69f0a01431d5",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "2a0c9506-ff3c-4cdc-a316-687fabe83ed1",
+            "236a56f5-7b5f-4cd1-b6b4-5ac5b2db80fc"
+          ],
+          "failures": [
+            "8e812af5-8cbf-44a9-895f-27a9abd2562a"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 12683,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "6.2.2"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports/mocha",
+        "quite": true,
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "5.2.0"
+    }
+  }
+}

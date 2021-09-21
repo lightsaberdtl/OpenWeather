@@ -1,0 +1,107 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2021-09-19T16:22:44.443Z",
+    "end": "2021-09-19T16:22:53.507Z",
+    "duration": 9064,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "771e7d84-5606-4723-a0f8-f8d7ff151afa",
+      "title": "",
+      "fullFile": "cypress/integration/E2E/Desktop/03-full-weather-page.js",
+      "file": "cypress/integration/E2E/Desktop/03-full-weather-page.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "dfa78c03-f0bd-4810-9b27-cf7cfe9625f2",
+          "title": "Full weather apge - display result",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Main case - Display correct data",
+              "fullTitle": "Full weather apge - display result Main case - Display correct data",
+              "timedOut": null,
+              "duration": 4642,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Intercept to check if get full weather API was called\ncy.intercept({\n  method: 'GET',\n  url: `${Cypress.env('getCityFullWeather_UI')}id=${cityTestData.main.cityId}*`\n}).as('getFullWeather'); // assign an alias \n// Go directly to full weather page with query\ncy.visit(`${Cypress.env('homePageURL')}city/${cityTestData.main.cityId}`); // Get full weather API was called\ncy.wait('@getFullWeather', {\n  timeout: 10000\n}).then(interception => {\n  console.log(interception);\n  assert.isNotNull(interception.response.body, 'API was called');\n}); // Check current date time, city name, city weather and city temperature\nfullWeatherPage.getCurrentDateTime().should('exist');\nfullWeatherPage.getCity().should($h2 => {\n  const text = $h2.text();\n  expect(text.toLowerCase()).to.eql(`${cityTestData.main.cityQuery.replace(' ', '')}, ${cityTestData.main.countryISO}`.toLowerCase());\n});\nfullWeatherPage.getCityWeather().should('exist');\nfullWeatherPage.getCityTemperature().should('exist');",
+              "err": {},
+              "uuid": "46198804-bcbb-4afb-a65b-2208d408bb43",
+              "parentUUID": "dfa78c03-f0bd-4810-9b27-cf7cfe9625f2",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "46198804-bcbb-4afb-a65b-2208d408bb43"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 4642,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "6.2.2"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports/mocha",
+        "quite": true,
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "5.2.0"
+    }
+  }
+}

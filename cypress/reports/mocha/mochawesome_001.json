@@ -1,0 +1,107 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2021-09-19T16:21:43.742Z",
+    "end": "2021-09-19T16:22:06.656Z",
+    "duration": 22914,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "e2599306-9d5f-425d-9790-b4a2794c6290",
+      "title": "",
+      "fullFile": "cypress/integration/E2E/Desktop/01-home-page.js",
+      "file": "cypress/integration/E2E/Desktop/01-home-page.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "7ff0b00a-e382-40ed-b7f5-ec54ded72e28",
+          "title": "Home page - search city",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Redirect to correct page afer searching",
+              "fullTitle": "Home page - search city Redirect to correct page afer searching",
+              "timedOut": null,
+              "duration": 17435,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Check main logo exists\nheader.getMainLogo().should('exist'); // Check search city input visible and input query\nheader.getDesktopSearchInput().should('be.visible').type(`${cityTestData.main.cityQuery}{enter}`);\n/* AFTER NAVIGATING */\n// Check navigate to right page\ncy.url().should('include', cityTestData.main.cityQuery.replace(' ', '+'));",
+              "err": {},
+              "uuid": "335dfd76-8b89-43c0-820e-76ddc0854e73",
+              "parentUUID": "7ff0b00a-e382-40ed-b7f5-ec54ded72e28",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "335dfd76-8b89-43c0-820e-76ddc0854e73"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 17435,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "6.2.2"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports/mocha",
+        "quite": true,
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "5.2.0"
+    }
+  }
+}
