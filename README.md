@@ -38,6 +38,4 @@
 ![image](https://user-images.githubusercontent.com/6335598/134642860-cd93ec9c-7311-4c5b-8deb-4caecf83047d.png)
 
 ### TROUBLESHOOTING
- - If running in windows, sometimes the run will fail with this error:
-   The dictionary is not empty
-   **Solution:** Close your window explorer and run again
+ - If running in windows, sometimes the run will fail with this error: "The dictionary is not empty". **Solution:** Close your window explorer and run again
