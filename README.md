@@ -1,6 +1,6 @@
 # OpenWeather
 
-# SETUP AND RUN GUIDELINE
+## SETUP AND RUN GUIDELINE
 
 ### APPROACH
  - Following test cases, verify APIs for getting city and weather Verify
