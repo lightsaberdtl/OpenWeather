@@ -39,3 +39,7 @@
 
 ### TROUBLESHOOTING
  - If running in windows, sometimes the run will fail with this error: "The dictionary is not empty". **Solution:** Close your window explorer and run again
+
+### ROOM FOR IMPROVEMENTS
+ - Use tv4 to validate JSON schema
+ - Use Eslint prettier to make code more structure and beatiful
