@@ -34,6 +34,7 @@
  - Check Organization Settings, make sure this setting is allowed
 ![image](https://user-images.githubusercontent.com/6335598/134641526-71d4d2ed-b017-4f3e-89ea-0a3427dd46a0.png)
  - Setup your clone project, choose config.yml from OpenWeather\.circleci
+ - Or you can view mine at: [https://app.circleci.com/pipelines/github/lightsaberdtl/OpenWeather](https://app.circleci.com/pipelines/github/lightsaberdtl/OpenWeather)
  - Result:
 ![image](https://user-images.githubusercontent.com/6335598/134642860-cd93ec9c-7311-4c5b-8deb-4caecf83047d.png)
 
