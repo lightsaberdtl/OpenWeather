@@ -28,17 +28,18 @@ describe('03.Full weather apge - display result', () => {
         cy.wait('@getFullWeather', {timeout: 10000}).then((interception) => {
             console.log(interception)
             assert.isNotNull(interception.response.body, 'API was called')
-        })
 
-        // Check current date time, city name, city weather and city temperature
-        const currentDate = new Date().toString()
-        fullWeatherPage.getCurrentDateTime().should('include.text', currentDate.substring(4,10)).invoke('css', 'color').should('equal', 'rgb(235, 110, 75)')
-        fullWeatherPage.getCity().should(($h2) => {
-            const text = $h2.text()
-          
-            expect(text.toLowerCase()).to.eql(`${cityTestData.main.cityQuery.replace(' ', '')}, ${cityTestData.main.countryISO}`.toLowerCase())
+            // Check current date time, city name, city weather and city temperature
+            const currentDate = new Date().toString()
+            fullWeatherPage.getCurrentDateTime().should('include.text', currentDate.substring(4,10)).invoke('css', 'color').should('equal', 'rgb(235, 110, 75)')
+            fullWeatherPage.getCity().should(($h2) => {
+                const text = $h2.text()
+            
+                expect(text.toLowerCase()).to.eql(`${cityTestData.main.cityQuery.replace(' ', '')}, ${cityTestData.main.countryISO}`.toLowerCase())
+            })
+            fullWeatherPage.getCityWeather().should('exist')
+            fullWeatherPage.getCityTemperature().should('exist')
         })
-        fullWeatherPage.getCityWeather().should('exist')
-        fullWeatherPage.getCityTemperature().should('exist')
+        
     })
 })

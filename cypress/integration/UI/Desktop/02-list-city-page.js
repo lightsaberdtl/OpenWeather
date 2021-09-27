@@ -33,20 +33,20 @@ describe('02.List city page - display result', () => {
         cy.wait('@getCityList', {timeout: 10000}).then((interception) => {
             console.log(interception)
             assert.isNotNull(interception.response.body, 'API was called')
+
+            // Check number of city returned
+            cityListPage.getCities().should('have.length', cityTestData.main.expectedResultLength)
+
+            // Check weather img, city name, temperatrue exits and click on the link
+            cityListPage.getWeatherImage(0).should('exist')
+            cityListPage.getTemperature(0).should('exist')
+            cityListPage.getCityName(0).should('have.text', ` ${cityTestData.main.cityQuery}, ${cityTestData.main.countryISO}`).click()
+
+            /* AFTER NAVIGATING */
+
+            // Check navigate to right page
+            cy.url().should('include', `city/${cityTestData.main.cityId}`)
         })
-
-        // Check number of city returned
-        cityListPage.getCities().should('have.length', cityTestData.main.expectedResultLength)
-
-        // Check weather img, city name, temperatrue exits and click on the link
-        cityListPage.getWeatherImage(0).should('exist')
-        cityListPage.getTemperature(0).should('exist')
-        cityListPage.getCityName(0).should('have.text', ` ${cityTestData.main.cityQuery}, ${cityTestData.main.countryISO}`).click()
-
-        /* AFTER NAVIGATING */
-
-        // Check navigate to right page
-        cy.url().should('include', `city/${cityTestData.main.cityId}`)
     })
 
     it('Found multiple cities', () => {
